@@ -58,9 +58,13 @@ footer {
 form > label {
     font-size: 1.3em;
     font-weight: bold;
-    margin-top: 5%;
+    margin-top: 2%;
     margin-bottom: 2%;
+    display: block;
+}
 
+.ui-slider-handle{
+    background-color: #ed1c24;
 }
 
 input[type="text"] {

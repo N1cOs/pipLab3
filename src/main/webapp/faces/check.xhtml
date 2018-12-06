@@ -25,7 +25,7 @@
     <div class="content">
         <h:form class="choose">
             <h:outputLabel>Выберите значение координаты Х:</h:outputLabel>
-            <h:selectOneRadio>
+            <h:selectOneRadio id="valueOfX" value="#{check.valueOfX}">
                 <f:selectItem itemValue="-4" itemLabel="-4"/>
                 <f:selectItem itemValue="-3" itemLabel="-3"/>
                 <f:selectItem itemValue="-2" itemLabel="-2"/>
@@ -38,17 +38,24 @@
             </h:selectOneRadio>
 
             <h:outputLabel for="valueOfY">Выберите значение координаты Y:</h:outputLabel>
-            <h:inputText a:placeholder="Выберите значение от -3 до 5" id="valueOfY" />
+            <p:message styleClass="error_message" for="valueOfY" display="text"/>
+            <h:inputText id="valueOfY" value="#{check.valueOfY}" a:placeholder="Выберите значение от -3 до 5"
+                         validatorMessage="Выберите значение от -3 до 5">
+                <f:validateDoubleRange minimum="-3" maximum="5"/>
+                <f:converter converterId="yConverter"/>
+            </h:inputText>
 
             <h:outputLabel>Выберите значение радиуса R:</h:outputLabel>
-            <h:outputText id="outputR" value="Выбранное значение: #{sas}" />
-            <h:inputHidden id="valueOfR"/>
+            <p:message styleClass="error_message" for="valueOfR" display="text"/>
+            <h:outputText id="outputR" value="Выбранное значение: #{check.valueOfR}" />
+            <h:inputHidden id="valueOfR" value="#{check.valueOfR}" required="true"
+                           requiredMessage="Выберите значение радиуса"/>
             <p:slider for="valueOfR" step="0.25" maxValue="4" minValue="1" style="width: 200px;
             margin-top: 2%; margin-left: 18px;" type="" display="outputR" displayTemplate="Выбранное значение: {value}"/>
 
             <!--Canvas here-->
 
-            <h:commandButton action="#" value="Отправить" />
+            <h:commandButton action="#{check.test}" value="Отправить" />
         </h:form>
         <div class="previous_checks">
             <div class="title">

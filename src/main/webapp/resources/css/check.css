@@ -150,4 +150,9 @@ footer div {
     margin-top: 42px;
 }
 
+.error_message{
+    color: red;
+    font-weight: bold;
+}
+
 

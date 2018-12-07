@@ -40,7 +40,7 @@
             <h:outputLabel for="valueOfY">Выберите значение координаты Y:</h:outputLabel>
             <p:message styleClass="error_message" for="valueOfY" display="text"/>
             <h:inputText id="valueOfY" value="#{check.valueOfY}" a:placeholder="Выберите значение от -3 до 5"
-                         validatorMessage="Выберите значение от -3 до 5">
+                         a:maxlength="9" validatorMessage="Выберите значение от -3 до 5">
                 <f:validateDoubleRange minimum="-3" maximum="5"/>
                 <f:converter converterId="yConverter"/>
             </h:inputText>
@@ -55,7 +55,7 @@
 
             <!--Canvas here-->
 
-            <h:commandButton action="#{check.test}" value="Отправить" />
+            <h:commandButton action="#{oracleRepository.save(check)}" value="Отправить" />
         </h:form>
         <div class="previous_checks">
             <div class="title">

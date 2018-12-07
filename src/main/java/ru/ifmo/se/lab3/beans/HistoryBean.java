@@ -11,7 +11,7 @@ import javax.faces.bean.ManagedProperty;
 import java.io.Serializable;
 import java.util.List;
 
-@ManagedBean(eager = true)
+@ManagedBean
 @ApplicationScoped
 @Getter
 @Setter
@@ -21,6 +21,6 @@ public class HistoryBean implements Serializable {
     private CheckRepository repository;
 
     public List<Check> getHistory(){
-        return repository.getHistory();
+        return repository.getAllResults();
     }
 }

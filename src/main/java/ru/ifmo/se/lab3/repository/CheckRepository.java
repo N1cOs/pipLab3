@@ -1,4 +1,4 @@
-package ru.ifmo.se.lab3.Repository;
+package ru.ifmo.se.lab3.repository;
 
 import ru.ifmo.se.lab3.domain.Check;
 

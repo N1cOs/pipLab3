@@ -2,7 +2,7 @@ package ru.ifmo.se.lab3.beans;
 
 import lombok.Getter;
 import lombok.Setter;
-import ru.ifmo.se.lab3.Repository.CheckRepository;
+import ru.ifmo.se.lab3.repository.CheckRepository;
 import ru.ifmo.se.lab3.domain.Check;
 
 import javax.faces.bean.ApplicationScoped;

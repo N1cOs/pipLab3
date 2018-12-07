@@ -3,6 +3,7 @@ package ru.ifmo.se.lab3.repository;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import ru.ifmo.se.lab3.domain.Check;
 import ru.ifmo.se.lab3.util.HibernateUtil;
 
@@ -18,7 +19,9 @@ public class OracleRepository implements CheckRepository {
     private final static SessionFactory sessionFactory;
 
     public List<Check> getAllResults() {
-        return null;
+        Session session = sessionFactory.openSession();
+        Query query = session.createQuery("from Check");
+        return (List<Check>) query.list();
     }
 
     static {

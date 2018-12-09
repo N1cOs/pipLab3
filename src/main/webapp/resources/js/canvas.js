@@ -9,12 +9,10 @@ const radiusInput = document.querySelector('[id *= "valueOfR"]');
 const observer = new MutationObserver(function (mutation) {
    if(radiusInput.value >= 1){
        context.clearRect(0, 0, width, height);
-       console.log(radiusInput.value);
        draw(radiusInput.value);
    }
 });
 observer.observe(radiusInput, {attributes : true});
-draw(1);
 
 class Point{
     constructor(x, y){
@@ -144,6 +142,8 @@ function draw(radius) {
 
     context.fill();
 }
+
+draw(1);
 
 function getWithOffset(canvas, event) {
     let rect = canvas.getBoundingClientRect();

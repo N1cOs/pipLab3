@@ -25,7 +25,7 @@
     <div class="content">
 
 
-        <h:form class="choose">
+        <h:form class="choose" id="form">
             <h:outputLabel>Выберите значение координаты Х:</h:outputLabel>
             <h:selectOneRadio id="valueOfX" value="#{check.valueOfX}">
                 <f:selectItem itemValue="-4" itemLabel="-4"/>
@@ -57,7 +57,10 @@
                       displayTemplate="Выбранное значение: {value}"/>
 
             <h:outputLabel>Можете выбрать точку на области:</h:outputLabel>
-            <canvas id="myCanvas" width="800" height="800">Turn on javascript</canvas>
+            <h:commandLink action="#{oracleRepository.save(check)}">
+                <canvas id="myCanvas" width="800" height="800">Turn on javascript</canvas>
+            </h:commandLink>
+
 
             <h:commandButton action="#{oracleRepository.save(check)}" value="Отправить" />
         </h:form>
@@ -69,13 +72,14 @@
                 table{
                     border-collapse: collapse;
                     border: 1px solid blue;
-
+                    text-align: center;
                     margin: auto;
                     }
                 th{
-                    text-align: center;
+
                     border-bottom: 2px solid blue;
                 }
+
             </style>
             <table id="history_table">
                 <tr>
@@ -88,12 +92,14 @@
                 <ui:repeat value="#{historyBean.history}" var="value">
                     <tr>
                         <td>
-                            #{value.date}
+                            <h:outputText value="#{value.date}">
+                                <f:convertDateTime type="date" pattern="dd.MM.yyyy HH:mm"/>
+                            </h:outputText>
                         </td>
-                        <td>
+                        <td class="x_coord">
                             #{value.valueOfX}
                         </td>
-                        <td>
+                        <td class="y_coord">
                             #{value.valueOfY}
                         </td>
                         <td>
@@ -108,5 +114,7 @@
         </div>
     </div>
     <h:outputScript library="js" name="canvas.js"/>
+    <h:outputScript library="js" name="submit.js"/>
+
 </h:body>
 </html>

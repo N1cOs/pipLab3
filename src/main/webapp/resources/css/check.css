@@ -127,7 +127,7 @@ canvas{
 .previous_checks table{
     margin-bottom: 20px;
     margin-top: 30px;
-    width: 90%;
+    width: 70%;
     border-width: 2px;
 }
 
@@ -143,8 +143,9 @@ footer div {
     margin-top: 42px;
 }
 
-td{
+td,th{
     border-right: 3px solid #0a28b4;
+    text-align: center;
 }
 
 .error_message{

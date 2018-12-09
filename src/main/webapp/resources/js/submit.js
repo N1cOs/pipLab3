@@ -1,14 +1,11 @@
 document.getElementById("myCanvas").addEventListener('click', function (event) {
     const coordsWithOffset = getWithOffset(canvas, event);
-    let x_input = document.querySelector('input[name="form:valueOfX"]');
-    let y_input = document.querySelector('input[name="form:valueOfY"]');
-    // console.log(y_input, x_input);
-    x_input.value = (coordsWithOffset.x-canvas.width/2)/100;
-    y_input.value = (-coordsWithOffset.y+canvas.height/2)/100;
-    // console.log(coordsWithOffset.x, coordsWithOffset.y);
-    console.log(x_input.value,y_input.value);
-    // document.querySelector('form').submit();
-
+    let x_input = document.getElementById('form:valueOfX:0');
+    let y_input = document.getElementById('form:valueOfY');
+    x_input.value = (coordsWithOffset.x - canvas.width / 2) / 100;
+    y_input.value = (-coordsWithOffset.y + canvas.height / 2) / 100;
+    x_input.setAttribute('checked', 'true');
+    // document.getElementById('form:sendButton').click();
 });
 
 

@@ -57,12 +57,11 @@
                       displayTemplate="Выбранное значение: {value}"/>
 
             <h:outputLabel>Можете выбрать точку на области:</h:outputLabel>
-            <h:commandLink action="#{oracleRepository.save(check)}">
+            <h:commandLink action="#{check.check}">
                 <canvas id="myCanvas" width="800" height="800">Turn on javascript</canvas>
             </h:commandLink>
 
-
-            <h:commandButton action="#{check.check}" value="Отправить" />
+            <h:commandButton id="sendButton" action="#{check.check}" value="Отправить" />
         </h:form>
         <div class="previous_checks">
             <div class="title">

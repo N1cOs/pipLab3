@@ -8,6 +8,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 @ManagedBean
@@ -15,7 +16,7 @@ import java.util.Date;
 @Data
 @Entity
 @Table(name = "results")
-public class Check {
+public class Check implements Serializable {
 
     private final static Parabola firstParabola = new Parabola(new Point2D(0.25, 0.2),
             new Point2D(0.5, 0.37), new Point2D(0.35, 0.064));
@@ -74,10 +75,10 @@ public class Check {
         return false;
     }
 
-    public boolean check(){
+    public String check(){
         result = checkArea(valueOfX, valueOfY, valueOfR) ? 1 : 0;
         date = new Date();
         checkRepository.save(this);
-        return result == 1;
+        return "check";
     }
 }

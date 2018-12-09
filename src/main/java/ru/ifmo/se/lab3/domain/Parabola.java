@@ -2,7 +2,9 @@ package ru.ifmo.se.lab3.domain;
 
 import javafx.geometry.Point2D;
 
-public class Parabola {
+import java.io.Serializable;
+
+public class Parabola implements Serializable {
 
     private Point2D leftPoint;
     private Point2D rightPoint;

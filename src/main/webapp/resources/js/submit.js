@@ -4,10 +4,12 @@ document.getElementById("myCanvas").addEventListener('click', function (event) {
     let y_input = document.querySelector('input[name="form:valueOfY"]');
     // console.log(y_input, x_input);
     x_input.value = (coordsWithOffset.x-canvas.width/2)/100;
+    x_input.checked = true;
     y_input.value = (-coordsWithOffset.y+canvas.height/2)/100;
     // console.log(coordsWithOffset.x, coordsWithOffset.y);
     console.log(x_input.value,y_input.value);
     // document.querySelector('form').submit();
+    console.log(y_input, x_input);
 
 });
 

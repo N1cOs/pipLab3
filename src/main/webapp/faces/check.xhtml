@@ -49,7 +49,7 @@
             <p:message styleClass="error_message" for="valueOfR" display="text"/>
             <h:outputText id="outputR" value="Выбранное значение: #{check.valueOfR}" />
             <h:inputHidden id="valueOfR" value="#{check.valueOfR}" required="true"
-                           requiredMessage="Выберите значение радиуса" a:onchange="console.log('sas')"/>
+                           requiredMessage="Выберите значение радиуса"/>
             <p:slider for="valueOfR" step="0.25" maxValue="4" minValue="1" style="width: 200px;
             margin-top: 2%; margin-left: 18px;" type="" display="outputR" displayTemplate="Выбранное значение: {value}"/>
 

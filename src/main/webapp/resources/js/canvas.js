@@ -5,25 +5,21 @@ const height = canvas.height;
 
 //Resize logo when radius change
 
-const radius = document.querySelector('[id *= "valueOfR"]');
+const radiusInput = document.querySelector('[id *= "valueOfR"]');
 const observer = new MutationObserver(function (mutation) {
-   if(radius.value >= 1){
+   if(radiusInput.value >= 1){
        context.clearRect(0, 0, width, height);
-       console.log(radius.value);
-       draw(radius.value);
+       console.log(radiusInput.value);
+       draw(radiusInput.value);
    }
 });
-observer.observe(radius, {attributes : true});
+observer.observe(radiusInput, {attributes : true});
+draw(1);
 
 class Point{
     constructor(x, y){
         this.x = x;
         this.y = y;
-    }
-
-    multiply(value){
-        this.x *= value;
-        this.y *= value;
     }
 }
 
@@ -35,16 +31,12 @@ class Parabola{
     }
 
     getCoefficients(scale){
-        this.leftPoint.multiply(scale);
-        this.rightPoint.multiply(scale);
-        this.vertex.multiply(scale);
-
-        let x1 = this.leftPoint.x;
-        let y1 = this.leftPoint.y;
-        let x2 = this.rightPoint.x;
-        let y2 = this.rightPoint.y;
-        let x3 = this.vertex.x;
-        let y3 = this.vertex.y;
+        let x1 = this.leftPoint.x * scale;
+        let y1 = this.leftPoint.y * scale;
+        let x2 = this.rightPoint.x * scale;
+        let y2 = this.rightPoint.y * scale;
+        let x3 = this.vertex.x * scale;
+        let y3 = this.vertex.y * scale;
 
         let a = (y3 - ((x3 * (y2 - y1) + x2 * y1 - x1 * y2) / (x2 - x1))) / (x3 * (x3 - x1 -x2) + x1 * x2);
         let b = (y2 - y1) / (x2 - x1) - a * (x1 + x2);
@@ -144,7 +136,7 @@ function draw(radius) {
         context.lineTo(width / 2 - scale * x, height / 2 - scale * y);
     }
 
-    for(let i = 1; i <= 26 * radius; i++){
+    for(let i = 1; i <= Math.round(26 * radius); i++){
         let x = 0.26 * radius - i * 0.01;
         let y = a3 * x  * x + b3 * x + c3;
         context.lineTo(width / 2 - scale * x, height / 2 - scale * y);
@@ -160,7 +152,3 @@ function getWithOffset(canvas, event) {
         y: event.clientY - rect.top - 5
     };
 }
-
-
-
-draw(1.25);

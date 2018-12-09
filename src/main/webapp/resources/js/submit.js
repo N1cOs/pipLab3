@@ -6,6 +6,7 @@ document.getElementById("myCanvas").addEventListener('click', function (event) {
     y_input.value = (-coordsWithOffset.y + canvas.height / 2) / 100;
     x_input.setAttribute('checked', 'true');
     // document.getElementById('form:sendButton').click();
+});
 
 
 function getWithOffset(canvas, event) {

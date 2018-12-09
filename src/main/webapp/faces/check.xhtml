@@ -59,7 +59,7 @@
             <h:outputLabel>Можете выбрать точку на области:</h:outputLabel>
             <canvas id="myCanvas" width="800" height="800">Turn on javascript</canvas>
 
-            <h:commandButton action="#{oracleRepository.save(check)}" value="Отправить" />
+            <h:commandButton action="#{check.check}" value="Отправить" />
         </h:form>
         <div class="previous_checks">
             <div class="title">
@@ -100,7 +100,7 @@
                             #{value.valueOfR}
                         </td>
                         <td>
-                            result placeholder
+                            #{value.result}
                         </td>
                     </tr>
                 </ui:repeat>

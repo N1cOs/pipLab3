@@ -23,6 +23,8 @@
         </div>
     </div>
     <div class="content">
+
+
         <h:form class="choose">
             <h:outputLabel>Выберите значение координаты Х:</h:outputLabel>
             <h:selectOneRadio id="valueOfX" value="#{check.valueOfX}">
@@ -47,21 +49,34 @@
 
             <h:outputLabel>Выберите значение радиуса R:</h:outputLabel>
             <p:message styleClass="error_message" for="valueOfR" display="text"/>
-            <h:outputText id="outputR" value="Выбранное значение: #{check.valueOfR}" />
+            <h:outputText id="outputR" value="Выбранное значение: #{check.valueOfR}"/>
             <h:inputHidden id="valueOfR" value="#{check.valueOfR}" required="true"
                            requiredMessage="Выберите значение радиуса" a:onchange="console.log('sas')"/>
             <p:slider for="valueOfR" step="0.25" maxValue="4" minValue="1" style="width: 200px;
-            margin-top: 2%; margin-left: 18px;" type="" display="outputR" displayTemplate="Выбранное значение: {value}"/>
+            margin-top: 2%; margin-left: 18px;" type="" display="outputR"
+                      displayTemplate="Выбранное значение: {value}"/>
 
             <h:outputLabel>Можете выбрать точку на области:</h:outputLabel>
             <canvas id="myCanvas" width="800" height="800">Turn on javascript</canvas>
 
-            <h:commandButton action="#{oracleRepository.save(check)}" value="Отправить" />
+            <!--<h:commandButton action="#{oracleRepository.save(check)}" value="Отправить" />-->
         </h:form>
         <div class="previous_checks">
             <div class="title">
                 Результаты прошлых проверок
             </div>
+            <style>
+                table{
+                    border-collapse: collapse;
+                    border: 1px solid blue;
+
+                    margin: auto;
+                    }
+                th{
+                    text-align: center;
+                    border-bottom: 2px solid blue;
+                }
+            </style>
             <table id="history_table">
                 <tr>
                     <th>Дата и время проверки</th>
@@ -70,6 +85,25 @@
                     <th>Радиус</th>
                     <th>Результат</th>
                 </tr>
+                <ui:repeat value="#{historyBean.history}" var="value">
+                    <tr>
+                        <td>
+                            #{value.date}
+                        </td>
+                        <td>
+                            #{value.valueOfX}
+                        </td>
+                        <td>
+                            #{value.valueOfY}
+                        </td>
+                        <td>
+                            #{value.valueOfR}
+                        </td>
+                        <td>
+                            result placeholder
+                        </td>
+                    </tr>
+                </ui:repeat>
             </table>
         </div>
     </div>

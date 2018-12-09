@@ -168,14 +168,15 @@ function historyDots() {
         context.beginPath();
         let valueOfX = parseFloat(xCoordinates[i].innerText);
         let valueOfY = parseFloat(yCoordinates[i].innerText);
-        context.arc(valueOfX * scale + width / 2, height / 2 - valueOfY * scale, 2, 0, Math.PI * 2);
-        if (statuses[i].textContent == 0) {
-            context.fillStyle = '#ed1c24';
-            statuses[i].textContent = 'нет попадания';
+        context.arc(valueOfX * scale + width / 2, height / 2 - valueOfY * scale, 3, 0, Math.PI * 2);
+        if (statuses[i].innerText === 'Промах') {
+            context.fillStyle = 'red';
+            statuses[i].style.color = 'red';
         } else {
-            context.fillStyle = '#04f';
-            statuses[i].textContent = 'попадание!';
+            context.fillStyle = 'green';
+            statuses[i].style.color = 'green';
         }
+        statuses[i].style.fontWeight = 'bold';
         context.fill();
 
     }

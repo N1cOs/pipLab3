@@ -25,27 +25,7 @@
     <h:link outcome="check" value="Перейти к вводу значений"/>
     <br/>
     <br/>
-
-    <div class="clock" style="height: 20px; background: #fff; width: 300px;"></div>
-    <p:clock mode="server" pattern="HH:mm:ss dd-MM-yyyy"/>
-    <script>
-        let pfclock = document.querySelector('span[class*="ui-clock"');
-        let div = document.querySelector('div[class="clock"');
-        pfclock.style = 'display: none';
-        div.innerText = pfclock.innerText;
-
-        function updateClock() {
-            div.innerText = pfclock.innerText;
-        }
-
-        setTimeout(updateClock, 3000);
-        window.setInterval(updateClock, 8000);
-        // updateClock();
-        // while (true) {
-
-        // }
-
-    </script>
-
+    <div id="clock"></div>
+    <h:outputScript library="js" name="timer.js" />
 </h:body>
 </html>

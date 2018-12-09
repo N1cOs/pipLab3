@@ -10,6 +10,7 @@ const observer = new MutationObserver(function (mutation) {
    if(radiusInput.value >= 1){
        context.clearRect(0, 0, width, height);
        draw(radiusInput.value);
+       historyDots();
    }
 });
 observer.observe(radiusInput, {attributes : true});
@@ -140,15 +141,22 @@ function draw(radius) {
         context.lineTo(width / 2 - scale * x, height / 2 - scale * y);
     }
 
+    context.fillStyle = "#000";
     context.fill();
 }
 
 draw(1);
-
-function getWithOffset(canvas, event) {
-    let rect = canvas.getBoundingClientRect();
-    return {
-        x: event.clientX - rect.left - 5,
-        y: event.clientY - rect.top - 5
-    };
+function historyDots() {
+    const xCoordinates = document.querySelectorAll('td.x_coord');
+    const yCoordinates = document.querySelectorAll('td.y_coord');
+    
+    for (let i = 0; i < xCoordinates.length; i++) {
+        context.beginPath();
+        let valueOfX = parseFloat(xCoordinates[i].innerText);
+        let valueOfY = parseFloat(yCoordinates[i].innerText);
+        context.arc(valueOfX * scale + width / 2, height / 2 - valueOfY * scale, 2, 0, Math.PI * 2);
+        context.fillStyle = '#ed1c24';
+        context.fill();
+    }
 }
+historyDots();

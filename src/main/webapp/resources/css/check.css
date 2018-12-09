@@ -116,6 +116,7 @@ form{
 canvas{
     display: block;
     margin: auto auto;
+    margin-top: 10px;
     border: 5px solid #ed1c24;
 }
 

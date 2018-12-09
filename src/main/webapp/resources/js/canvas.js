@@ -3,6 +3,18 @@ const context = canvas.getContext('2d');
 const width = canvas.width;
 const height = canvas.height;
 
+//Resize logo when radius change
+
+const radius = document.querySelector('[id *= "valueOfR"]');
+const observer = new MutationObserver(function (mutation) {
+   if(radius.value >= 1){
+       context.clearRect(0, 0, width, height);
+       console.log(radius.value);
+       draw(radius.value);
+   }
+});
+observer.observe(radius, {attributes : true});
+
 class Point{
     constructor(x, y){
         this.x = x;
@@ -59,13 +71,18 @@ const thirdParabola = new Parabola(new Point(0, -0.4482), new Point(0.26, -0.347
     new Point(0.1522, -0.2445));
 
 function draw(radius) {
+    let {a:a1, b:b1, c:c1} = firstParabola.getCoefficients(radius);
+    let {a:a2, b:b2, c:c2} = secondParabola.getCoefficients(radius);
+    let {a:a3, b:b3, c:c3} = thirdParabola.getCoefficients(radius);
     context.beginPath();
+
+    // ----------------Right half----------------
+
     context.moveTo(width / 2, height / 2 - radius * scale * 0.3);
     context.lineTo(width / 2 + scale * radius * 0.1, height / 2 - radius * scale * 0.3);
     context.lineTo(width / 2 + scale * radius * 0.2, height / 2 - radius * scale * 0.4);
     context.lineTo(width / 2 + scale * radius * 0.25, height / 2 - radius * scale * 0.2);
 
-    let {a:a1, b:b1, c:c1} = firstParabola.getCoefficients(radius);
     for(let i = 1; i <= 25 * radius; i++){
         let x = 0.25 * radius + i * 0.01;
         let y = (a1 * x  * x + b1 * x + c1);
@@ -84,29 +101,66 @@ function draw(radius) {
         context.lineTo(width / 2 + scale * x, height / 2 - scale * y);
     }
 
-    let{a:a2, b:b2, c:c2} = secondParabola.getCoefficients(radius);
     for(let i = 1; i <= 26 * radius; i++){
         let x = 0.58 * radius - i * 0.01;
         let y = (a2 * x  * x + b2 * x + c2);
         context.lineTo(width / 2 + scale * x, height / 2 - scale * y);
     }
 
-    let{a:a3, b:b3, c:c3} = thirdParabola.getCoefficients(radius);
     for(let i = 1; i <= 26 * radius; i++){
         let x = 0.26 * radius - i * 0.01;
         let y = (a3 * x  * x + b3 * x + c3);
         context.lineTo(width / 2 + scale * x, height / 2 - scale * y);
     }
-    context.stroke();
 
+    // ----------------Left half----------------
+
+    context.moveTo(width / 2, height / 2 - radius * scale * 0.3);
+    context.lineTo(width / 2 - scale * radius * 0.1, height / 2 - radius * scale * 0.3);
+    context.lineTo(width / 2 - scale * radius * 0.2, height / 2 - radius * scale * 0.4);
+    context.lineTo(width / 2 - scale * radius * 0.25, height / 2 - radius * scale * 0.2);
+
+    for(let i = 1; i <= 25 * radius; i++){
+        let x = 0.25 * radius + i * 0.01;
+        let y = a1 * x  * x + b1 * x + c1;
+        context.lineTo(width / 2 - scale * x, height / 2 - scale * y);
+    }
+
+    for(let i = 1; i <= 50 * radius; i++){
+        let x = 0.5 * radius + i * 0.01;
+        let y = firstEllipse(x, radius);
+        context.lineTo(width / 2 - scale * x, height / 2 - scale * y);
+    }
+
+    for(let i = 0; i<= 42 * radius; i++){
+        let x = 1 * radius - i * 0.01;
+        let y = secondEllipse(x, radius);
+        context.lineTo(width / 2 - scale * x, height / 2 - scale * y);
+    }
+
+    for(let i = 1; i <= 26 * radius; i++){
+        let x = 0.58 * radius - i * 0.01;
+        let y = a2 * x  * x + b2 * x + c2;
+        context.lineTo(width / 2 - scale * x, height / 2 - scale * y);
+    }
+
+    for(let i = 1; i <= 26 * radius; i++){
+        let x = 0.26 * radius - i * 0.01;
+        let y = a3 * x  * x + b3 * x + c3;
+        context.lineTo(width / 2 - scale * x, height / 2 - scale * y);
+    }
+
+    context.fill();
 }
 
 function getWithOffset(canvas, event) {
     let rect = canvas.getBoundingClientRect();
     return {
-        x: event.clientX - rect.left,
-        y: event.clientY - rect.top
+        x: event.clientX - rect.left - 5,
+        y: event.clientY - rect.top - 5
     };
 }
 
-draw(2.5);
+
+
+draw(1.25);

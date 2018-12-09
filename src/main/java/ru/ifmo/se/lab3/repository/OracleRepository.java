@@ -1,7 +1,6 @@
 package ru.ifmo.se.lab3.repository;
 
 import lombok.extern.java.Log;
-import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -11,7 +10,6 @@ import ru.ifmo.se.lab3.util.HibernateUtil;
 
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
-import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;

@@ -8,6 +8,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -30,6 +32,7 @@ public class Check implements Serializable {
     @SequenceGenerator(name = "results_generator", sequenceName = "results_seq", allocationSize = 10)
     private int id;
 
+    @NotNull
     @Column(name = "x_value")
     private Double valueOfX;
 

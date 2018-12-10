@@ -9,6 +9,7 @@ import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import java.io.Serializable;
+import java.util.Comparator;
 import java.util.List;
 
 @ManagedBean
@@ -21,6 +22,8 @@ public class HistoryBean implements Serializable {
     private CheckRepository repository;
 
     public List<Check> getHistory(){
-        return repository.getAllResults();
+        List<Check> results = repository.getAllResults();
+        results.sort(Comparator.comparing(Check::getDate).reversed());
+        return results;
     }
 }

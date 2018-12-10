@@ -27,6 +27,7 @@
 
         <h:form class="choose" id="form">
             <h:outputLabel>Выберите значение координаты Х:</h:outputLabel>
+            <p:message styleClass="error_message" for="valueOfX" />
             <h:selectOneRadio id="valueOfX" value="#{check.valueOfX}">
                 <f:selectItem itemValue="-4" itemLabel="-4"/>
                 <f:selectItem itemValue="-3" itemLabel="-3"/>
@@ -38,6 +39,7 @@
                 <f:selectItem itemValue="3" itemLabel="3"/>
                 <f:selectItem itemValue="4" itemLabel="4"/>
             </h:selectOneRadio>
+            <h:inputHidden value="#{check.valueOfX}" id="hiddenX" />
 
             <h:outputLabel for="valueOfY">Выберите значение координаты Y:</h:outputLabel>
             <p:message styleClass="error_message" for="valueOfY" display="text"/>
@@ -57,9 +59,7 @@
                       displayTemplate="Выбранное значение: {value}"/>
 
             <h:outputLabel>Можете выбрать точку на области:</h:outputLabel>
-            <h:commandLink action="#{check.check}">
-                <canvas id="myCanvas" width="800" height="800">Turn on javascript</canvas>
-            </h:commandLink>
+            <canvas id="myCanvas" width="800" height="800">Turn on javascript</canvas>
 
             <h:commandButton id="sendButton" action="#{check.check}" value="Отправить" />
         </h:form>

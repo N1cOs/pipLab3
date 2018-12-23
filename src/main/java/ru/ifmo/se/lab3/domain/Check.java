@@ -4,17 +4,11 @@ import javafx.geometry.Point2D;
 import lombok.Data;
 import ru.ifmo.se.lab3.repository.CheckRepository;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 
-@ManagedBean
-@RequestScoped
 @Data
 @Entity
 @Table(name = "results")
@@ -47,7 +41,6 @@ public class Check implements Serializable {
 
     private Integer result;
 
-    @ManagedProperty("#{oracleRepository}")
     @Transient
     private CheckRepository checkRepository;
 
